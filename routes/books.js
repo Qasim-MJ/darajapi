@@ -34,7 +34,7 @@ router.post('/addBook',
             const {bookTitle, author , description} = req.body
               if (req.files.image && req.files.pdf && bookTitle !== "" && author !== "" && description !== "") {
                 const INSERT_BOOK = `INSERT INTO books (bookTitle, author, imageURL, pdfURL, description) 
-                VALUES ('${bookTitle}', '${author}', 'file:///Users/Qasem/Desktop/daraj/${req.files.image[0].path}', 'file:///Users/Qasem/Desktop/daraj/${req.files.pdf[0].path}', '${description}')`
+                VALUES ('${bookTitle}', '${author}', 'http://app-05ed6b0e-f15e-4831-b6af-267eef5804fa.cleverapps.io/${req.files.image[0].path}', 'http://app-05ed6b0e-f15e-4831-b6af-267eef5804fa.cleverapps.io/${req.files.pdf[0].path}', '${description}')`
                 connection.query(INSERT_BOOK, (err, results) => {
                     if (err) {
                         res.json({success : false , error : err})
