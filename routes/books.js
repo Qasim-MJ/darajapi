@@ -33,8 +33,10 @@ router.post('/addBook',
         (req,res) => {
             const {bookTitle, author , description} = req.body
               if (req.files.image && req.files.pdf && bookTitle !== "" && author !== "" && description !== "") {
+                  let imagepath = "https://pydio-frs-n2.services.clever-cloud.com/index.php?secure_token=pU9ZgVNQkbcEVLsXgZ6JMahJmp4ujc6k&get_action=open_file&repository_id=predefined_ftp&file=%2F"+req.files.image[0].path
                 const INSERT_BOOK = `INSERT INTO books (bookTitle, author, imageURL, pdfURL, description) 
                 VALUES ('${bookTitle}', '${author}', 'file:///Users/Qasem/Desktop/daraj/${req.files.image[0].path}', 'file:///Users/Qasem/Desktop/daraj/${req.files.pdf[0].path}', '${description}')`
+                    console.log(imagepath)
                 connection.query(INSERT_BOOK, (err, results) => {
                     if (err) {
                         res.json({success : false , error : err})
